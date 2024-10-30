@@ -4,7 +4,7 @@
 
 This project leverages machine learning techniques to predict house sale prices based on various features of the properties. The project includes data preprocessing, feature engineering, model selection, and evaluation to produce accurate sale price predictions.
 
-![Web App](https://github.com/LearnCode801/House-Sale-Price-Prediction/blob/main/Screenshot%202024-10-30%20133822.png)
+![Project Screenshot](https://github.com/LearnCode801/House-Sale-Price-Prediction/blob/main/Screenshot%202024-10-30%20133822.png)
 
 ## Project Overview
 
@@ -47,6 +47,10 @@ Note: Ensure that Jupyter Notebook or Jupyter Lab is installed to open and inter
 - **Data Preprocessing**: Cleaning data by handling missing values, encoding categorical variables, and scaling features.
 - **Model Training and Tuning**: Several models are explored, including linear regression, decision trees, and ensemble methods.
 - **Evaluation and Comparison**: Models are evaluated and compared based on performance metrics, guiding you toward the best model for house sale price prediction.
+
+## Additional Resources
+
+Check out a related post on LinkedIn for insights into the project and Python machine learning techniques: [LinkedIn Post](https://www.linkedin.com/posts/muhammad-talha-806126234_project-python-ml-activity-7064274005712584705-ZH0N?utm_source=share&utm_medium=member_desktop)
 
 ## Contributing
 
