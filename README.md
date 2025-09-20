@@ -1,60 +1,167 @@
----
+# House Price Prediction Model
 
-# House Sale Price Prediction
+![Project Demo](https://github.com/LearnCode801/House-Sale-Price-Prediction/blob/main/Screenshot%202024-10-30%20133822.png)
 
-This project leverages machine learning techniques to predict house sale prices based on various features of the properties. The project includes data preprocessing, feature engineering, model selection, and evaluation to produce accurate sale price predictions.
+A comprehensive machine learning project for predicting house prices using the King County House Sales dataset. This project implements multiple regression algorithms with feature engineering, outlier detection, and hyperparameter tuning to achieve optimal prediction accuracy.
 
-![Project Screenshot](https://github.com/LearnCode801/House-Sale-Price-Prediction/blob/main/Screenshot%202024-10-30%20133822.png)
+## 🎬 Project Demo
 
-## Project Overview
+[![Project Demo Video](https://img.shields.io/badge/Watch-Demo%20Video-red?style=for-the-badge&logo=youtube)](https://lnkd.in/p/dmW-2Tyc)
 
-The project walks through the complete machine learning workflow:
-1. **Data Loading and Exploration** - Initial exploration of the dataset to understand the structure and nature of the data.
-2. **Data Preprocessing** - Cleaning and transforming data to prepare it for model training.
-3. **Feature Engineering** - Selecting and engineering features that improve model performance.
-4. **Model Training** - Training various machine learning models to find the best fit for predicting sale prices.
-5. **Model Evaluation** - Evaluating models using metrics such as Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE).
+## 📓 Project Notebook
 
-## Installation
+[![View Notebook](https://img.shields.io/badge/View-Jupyter%20Notebook-orange?style=for-the-badge&logo=jupyter)](https://github.com/LearnCode801/House-Sale-Price-Prediction/blob/main/FSDS_Sales_Forcast.ipynb)
 
-To run this project locally, you'll need Python and several key libraries. You can install the required dependencies with:
+## 📊 Project Overview
 
+This project analyzes and predicts house prices based on various property features such as location, size, condition, and amenities. The model achieved an **83.47% accuracy** using XGBoost regression with carefully selected features.
+
+## 🎯 Key Features
+
+- **Multiple ML Algorithms**: Comparison of 16+ regression models
+- **Advanced Feature Engineering**: Creation of house age and renovation age features
+- **Outlier Detection**: Multiple techniques including Z-Score, IQR, and Isolation Forest
+- **Correlation Analysis**: Removal of highly correlated features (>0.8 correlation)
+- **Feature Selection**: XGBoost feature importance analysis for optimal model performance
+- **Hyperparameter Tuning**: Grid search optimization for best model parameters
+
+## 📈 Dataset Information
+
+**Source**: King County House Sales Dataset  
+**Records**: 21,613 house sales  
+**Features**: 21 original features (reduced to 9 key features)  
+**Target Variable**: House price (USD)
+
+### Original Features:
+- `id`: Unique identifier
+- `date`: Sale date
+- `price`: Sale price (target variable)
+- `bedrooms`: Number of bedrooms
+- `bathrooms`: Number of bathrooms
+- `sqft_living`: Living area square footage
+- `sqft_lot`: Lot size square footage
+- `floors`: Number of floors
+- `waterfront`: Waterfront property (0/1)
+- `view`: Quality of view (0-4)
+- `condition`: Property condition (1-5)
+- `grade`: Overall grade (1-13)
+- `sqft_above`: Above ground square footage
+- `sqft_basement`: Basement square footage
+- `yr_built`: Year built
+- `yr_renovated`: Year renovated
+- `zipcode`: ZIP code
+- `lat`: Latitude
+- `long`: Longitude
+- `sqft_living15`: Living area of nearest 15 neighbors
+- `sqft_lot15`: Lot size of nearest 15 neighbors
+
+## 🔧 Data Preprocessing
+
+### Feature Engineering
+- **House Age**: `age = sale_year - year_built`
+- **Renovation Age**: `renov_age = |year_renovated - year_built|`
+- **Date Formatting**: Extracted year from sale date
+
+### Data Cleaning
+- Handled missing values (filled with 0)
+- Removed highly correlated features (correlation > 0.8)
+- Applied multiple outlier detection methods
+
+### Outlier Detection Methods
+1. **Interquartile Range (IQR)**: Identified 1,146 outliers
+2. **Z-Score Method**: Identified 406 outliers (threshold = 3)
+3. **Isolation Forest**: Advanced anomaly detection
+
+## 🤖 Machine Learning Models
+
+### Models Tested:
+1. **Linear Regression** - 60.51% accuracy
+2. **Ridge Regression** - 60.51% accuracy
+3. **Lasso Regression** - 60.51% accuracy
+4. **Bayesian Ridge** - 60.51% accuracy
+5. **ElasticNet** - 55.01% accuracy
+6. **SGD Regressor** - 60.45% accuracy
+7. **Huber Regressor** - 60.03% accuracy
+8. **RANSAC Regressor** - 48.74% accuracy
+9. **Gradient Boosting** - 75.99% accuracy
+10. **AdaBoost** - 39.48% accuracy
+11. **Extra Trees** - 74.90% accuracy
+12. **Random Forest** - 77.56% accuracy
+13. **Bagging** - 75.36% accuracy
+14. **K-Neighbors** - 64.24% accuracy
+15. **Decision Tree** - 56.02% accuracy
+16. **XGBoost** - 75.99% accuracy
+
+### Best Model: XGBoost
+- **Final Accuracy**: 83.47%
+- **Hyperparameters**:
+  - Learning Rate: 0.1
+  - Max Depth: 4
+  - N Estimators: 1000
+
+## 📊 Feature Importance
+
+Top 9 most important features selected for final model:
+1. `sqft_lot` - Lot size
+2. `sqft_living15` - Living area of neighbors
+3. `age` - House age
+4. `zipcode` - Location (ZIP code)
+5. `bathrooms` - Number of bathrooms
+6. `bedrooms` - Number of bedrooms
+7. `renov_age` - Renovation age
+8. `floors` - Number of floors
+9. `waterfront` - Waterfront property
+
+## 🚀 Installation & Usage
+
+### Prerequisites
 ```bash
-pip install -r requirements.txt
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost pickle-mixin
 ```
 
-Note: Ensure that Jupyter Notebook or Jupyter Lab is installed to open and interact with the `.ipynb` file.
+### Running the Model
+```python
+import pickle
+import pandas as pd
 
-## Usage
+# Load the trained model
+model = pickle.load(open('model.pkl', 'rb'))
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/LearnCode801/House-Sale-Price-Prediction.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd House-Sale-Price-Prediction
-   ```
-3. Open the Jupyter Notebook:
-   ```bash
-   jupyter notebook FSDS_Sales_Forcast.ipynb
-   ```
-4. Run each cell in the notebook to load the data, preprocess it, and train models for predicting house sale prices.
+# Prepare your data with the required features
+sample_data = pd.DataFrame({
+    'sqft_lot': [5650.0],
+    'sqft_living15': [1340.0],
+    'age': [20.0],
+    'zipcode': [98178.0],
+    'bathrooms': [2.0],
+    'bedrooms': [3.0],
+    'renov_age': [0.0],
+    'floors': [1.0],
+    'waterfront': [0.0]
+})
 
-## Features
+# Make prediction
+prediction = model.predict(sample_data)
+print(f"Predicted Price: ${prediction[0]:,.2f}")
+```
 
-- **Exploratory Data Analysis**: Initial analysis and visualization of the dataset.
-- **Data Preprocessing**: Cleaning data by handling missing values, encoding categorical variables, and scaling features.
-- **Model Training and Tuning**: Several models are explored, including linear regression, decision trees, and ensemble methods.
-- **Evaluation and Comparison**: Models are evaluated and compared based on performance metrics, guiding you toward the best model for house sale price prediction.
+## 📊 Model Performance
 
-## Additional Resources
+| Metric | Value |
+|--------|-------|
+| **R² Score** | 0.8347 |
+| **Accuracy** | 83.47% |
+| **Training Method** | 7-Fold Cross Validation |
+| **Final Features** | 9 selected features |
 
-Check out a related post on LinkedIn for insights into the project and Python machine learning techniques: [LinkedIn Post](https://www.linkedin.com/posts/muhammad-talha-806126234_project-python-ml-activity-7064274005712584705-ZH0N?utm_source=share&utm_medium=member_desktop)
+## 🔍 Key Insights
 
-## Contributing
+1. **Location Matters**: ZIP code is a crucial factor in price prediction
+2. **Size Impact**: Square footage (lot and living area) significantly affects price
+3. **Age Factor**: House age shows negative correlation with price
+4. **Neighborhood Effect**: Living area of nearby houses influences price
+5. **Feature Reduction**: Model performance improved by removing highly correlated features
 
-Feel free to submit pull requests to contribute to this project. All contributions are welcome!
+---
 
-
---- 
+⭐ **Star this repository if you found it helpful!** ⭐
