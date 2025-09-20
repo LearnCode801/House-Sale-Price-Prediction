@@ -112,39 +112,6 @@ Top 9 most important features selected for final model:
 8. `floors` - Number of floors
 9. `waterfront` - Waterfront property
 
-## 🚀 Installation & Usage
-
-### Prerequisites
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn xgboost pickle-mixin
-```
-
-### Running the Model
-```python
-import pickle
-import pandas as pd
-
-# Load the trained model
-model = pickle.load(open('model.pkl', 'rb'))
-
-# Prepare your data with the required features
-sample_data = pd.DataFrame({
-    'sqft_lot': [5650.0],
-    'sqft_living15': [1340.0],
-    'age': [20.0],
-    'zipcode': [98178.0],
-    'bathrooms': [2.0],
-    'bedrooms': [3.0],
-    'renov_age': [0.0],
-    'floors': [1.0],
-    'waterfront': [0.0]
-})
-
-# Make prediction
-prediction = model.predict(sample_data)
-print(f"Predicted Price: ${prediction[0]:,.2f}")
-```
-
 ## 📊 Model Performance
 
 | Metric | Value |
